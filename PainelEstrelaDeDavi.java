@@ -20,15 +20,12 @@ import javax.swing.JPanel;
  */
 public class PainelEstrelaDeDavi extends JPanel implements Runnable {
     
-    
     private int angulo = 0;
     Thread thread;
     
     public PainelEstrelaDeDavi()
     {
-        
-        new Thread(this).start();
-        
+        new Thread(this).start();   
     }        
     
      public void paintComponent(Graphics g){
@@ -49,14 +46,12 @@ public class PainelEstrelaDeDavi extends JPanel implements Runnable {
          int y2Points [] = {120,120,210};
         
          AffineTransform atf = new AffineTransform();
-         
          atf.rotate(Math.toRadians(angulo),210, 210);
-         g2d.setTransform(atf);
-        
          atf.translate(100, 50);
          g2d.setTransform(atf);
+         
          GeneralPath estrela = new GeneralPath();
-         /*GeneralPath estrela1 = new GeneralPath();*/
+         // Triângulo de cima
          estrela.moveTo(x1Points[0],y1Points[0]);
          
          for(int i=1; i< x1Points.length;i++)
@@ -66,6 +61,7 @@ public class PainelEstrelaDeDavi extends JPanel implements Runnable {
          g2d.setPaint(Color.blue);
          g2d.draw(estrela);
          
+         // Triângulo de baixo
          estrela.moveTo(x2Points[0],y2Points[0]);
          
          for(int i=1; i< x2Points.length;i++)
@@ -74,10 +70,9 @@ public class PainelEstrelaDeDavi extends JPanel implements Runnable {
          estrela.closePath();
          g2d.setPaint(Color.blue);
          g2d.draw(estrela);
-         
-         
      }        
 
+     
     @Override
     public void run() {
        
